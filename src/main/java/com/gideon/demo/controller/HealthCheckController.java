@@ -24,8 +24,6 @@ public class HealthCheckController {
     /**
      * Main health check endpoint
      * GET /health
-     *
-     * Returns: 200 (HEALTHY), 207 (DEGRADED), or 503 (UNHEALTHY)
      */
     @GetMapping("/health")
     public ResponseEntity<HealthMetrics> getHealth() {

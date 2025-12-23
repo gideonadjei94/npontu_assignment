@@ -38,9 +38,9 @@ public class HealthCheckServiceImpl implements HealthCheckService{
 
         // Configure the 3 endpoints to monitor
         this.endpoints = Arrays.asList(
-                new EndpointConfig("service-1", "https://jsonplaceholder.typicode.com/posts/1", 5000),
-                new EndpointConfig("service-2", "https://api.github.com/users/github", 5000),
-                new EndpointConfig("service-3", "https://httpbin.org/status/200", 5000)
+                new EndpointConfig("service-1", "https://knowmate.com", 5000),
+                new EndpointConfig("service-2", "https://ppmt.myclassform.com", 5000),
+                new EndpointConfig("service-3", "https://myclassform.com", 5000)
         );
 
         // Initialize history storage for each endpoint
@@ -48,7 +48,7 @@ public class HealthCheckServiceImpl implements HealthCheckService{
                 healthHistory.put(endpoint.getName(), Collections.synchronizedList(new ArrayList<>()))
         );
 
-        log.info("✅ Health Check Service initialized - Monitoring {} endpoints", endpoints.size());
+        log.info("Health Check Service initialized - Monitoring {} endpoints", endpoints.size());
     }
 
 
@@ -96,7 +96,7 @@ public class HealthCheckServiceImpl implements HealthCheckService{
                     .build();
 
             addToHistory(endpoint.getName(), result);
-            log.error("❌ Health check failed for {}: {}", endpoint.getName(), e.getMessage());
+            log.error("Health check failed for {}: {}", endpoint.getName(), e.getMessage());
             return result;
         }
     }
@@ -255,7 +255,7 @@ public class HealthCheckServiceImpl implements HealthCheckService{
     public void scheduledHealthCheck() {
         HealthMetrics metrics = performHealthChecks();
 
-        log.info("🏥 [{}] Health Check: {} - {}/{} services healthy",
+        log.info("[{}] Health Check: {} - {}/{} services healthy",
                 Instant.now(),
                 metrics.getOverallStatus(),
                 metrics.getHealthyEndpoints(),
@@ -266,7 +266,7 @@ public class HealthCheckServiceImpl implements HealthCheckService{
         metrics.getChecks().stream()
                 .filter(check -> HealthCheckStatus.DOWN.equals(check.getStatus()))
                 .forEach(check ->
-                        log.error("⚠️  ALERT: {} is DOWN - {}",
+                        log.error("ALERT: {} is DOWN - {}",
                                 check.getEndpoint(),
                                 check.getError() != null ? check.getError() : "Unknown error")
                 );
