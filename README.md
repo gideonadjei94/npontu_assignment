@@ -43,12 +43,12 @@ cd health-check-springboot
 
 2. **Build the project**
 ```bash
-mvn clean install
+./mvnw clean install
 ```
 
 3. **Run the application**
 ```bash
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
 The service will start on **http://localhost:8080**

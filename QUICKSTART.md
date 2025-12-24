@@ -7,7 +7,7 @@ cd health-check-springboot
 
 ## Step 2: Run the Application
 ```bash
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
 **Wait for:**
